@@ -28,7 +28,7 @@ namespace os {
 			{
 				int middle = (low + high) / 2;
 
-				if (a[middle] > a[i]) high = middle-1;
+				if (temp < a[middle]) high = middle-1;
 				else if (a[middle] == a[i])
 				{
 					high = middle;
@@ -45,4 +45,30 @@ namespace os {
 		}
 	}
 
+	inline void Shell_sort(int a[], int length)
+	{
+		//非常非常聪明的一种写法，通过不同的序列子串，来对原始数组进行多次简单的排序，最终降低整个数组的复杂度
+		//从而使数组最后一遍的时间复杂度趋近于n
+		//难点是如何选择这个增量数列
+		int incremental[3] = { 3,2,1 };
+		for (int i = 0; i < 3; i++)
+		{
+			//进行3次插入排序
+			int dk = incremental[i];
+			for (int j = dk; j < length; j++)
+			{
+				if (a[j] < a[j - dk])
+				{
+					//那么进行简单的直接插入排序就好了
+					int temp = a[j];
+					int m = 0;
+					for (m = j - dk; m >= 0 && temp < a[m]; m -= dk)
+					{
+						a[m + dk] = a[m];
+					}
+					a[m + dk] = temp;
+				}
+			}
+		}
+	}
 }
