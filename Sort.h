@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 namespace os {
-	inline void insert_sort(int a[],int length)
+	static inline void insert_sort(int a[],int length)
 	{	//插入算法的本质，有点类似于冒泡排序，假定前面是一个有序数字，把原始数组zhong
 		//的元素有序的依次插入这个有序数组中，最后就可以的到一个有序的数组了，时间复杂度O（n^2）,空间复杂度O（1）
 		int j = 0;
@@ -18,7 +18,7 @@ namespace os {
 			}
 		}
 	}
-	inline void Binsert_sort(int a[], int length)
+	static inline void Binsert_sort(int a[], int length)
 	{
 		int j = 0;
 		for (int i = 1; i < length; ++i)
@@ -45,7 +45,7 @@ namespace os {
 		}
 	}
 
-	inline void Shell_sort(int a[], int length)
+	static inline void Shell_sort(int a[], int length)
 	{
 		//非常非常聪明的一种写法，通过不同的序列子串，来对原始数组进行多次简单的排序，最终降低整个数组的复杂度
 		//从而使数组最后一遍的时间复杂度趋近于n
@@ -70,5 +70,7 @@ namespace os {
 				}
 			}
 		}
+		//in the last
+		Binsert_sort(a, length);
 	}
 }
